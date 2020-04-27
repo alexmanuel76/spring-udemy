@@ -18,7 +18,7 @@ public class VacantesServiceImpl implements IVacanteService{
 	 * Constructor General
 	 */
 	public VacantesServiceImpl() {
-		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
 		listaEmpleos = new LinkedList<>();
 		
 		try {
@@ -29,6 +29,7 @@ public class VacantesServiceImpl implements IVacanteService{
 			vacante1.setFecha(formatoFecha.parse("10-11-2019"));
 			vacante1.setSalario(75000.00);
 			vacante1.setDestacado(1);
+			vacante1.setEstatus("Creada");
 			vacante1.setImagen("empresa1.png");
 			
 			Vacante vacante2 = new Vacante();
@@ -38,6 +39,7 @@ public class VacantesServiceImpl implements IVacanteService{
 			vacante2.setFecha(formatoFecha.parse("09-02-2017"));
 			vacante2.setSalario(38300.25);
 			vacante2.setDestacado(0);
+			vacante2.setEstatus("Aprobada");
 			vacante2.setImagen("empresa2.png");
 			
 			Vacante vacante3 = new Vacante();
@@ -46,6 +48,7 @@ public class VacantesServiceImpl implements IVacanteService{
 			vacante3.setDescripcion("Se requiere Panadero de estilo frances para hacer pancitos");
 			vacante3.setFecha(formatoFecha.parse("30-03-2017"));
 			vacante3.setSalario(46465.00);
+			vacante3.setEstatus("Aprobada");
 			vacante3.setDestacado(0);
 			
 			Vacante vacante4 = new Vacante();
@@ -55,6 +58,7 @@ public class VacantesServiceImpl implements IVacanteService{
 			vacante4.setFecha(formatoFecha.parse("20-02-2017"));
 			vacante4.setSalario(46465.00);
 			vacante4.setDestacado(1);
+			vacante4.setEstatus("Creada");
 			vacante4.setImagen("empresa3.png");
 			
 			listaEmpleos.add(vacante1);
@@ -82,6 +86,11 @@ public class VacantesServiceImpl implements IVacanteService{
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void guardar(Vacante vacante) {
+		listaEmpleos.add(vacante);
 	}
 
 }
