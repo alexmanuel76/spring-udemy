@@ -22,6 +22,11 @@ public class CategoriasController {
 	@Autowired
 	private ICategoriasService categoriasService;
 
+	/**
+	 * Metodo para listar las categorias
+	 * @param modelo parametro usado para enviar el listado a la vista
+	 * @return vista listCategorias con todas las categorias
+	 */
 	@GetMapping("/index")
 	public String mostrarIndex(Model modelo) {
 		List<Categoria> listadoCategorias = categoriasService.buscarTodas();
