@@ -6,24 +6,6 @@ public class Categoria {
 	private String nombre;
 	private String descripcion;
 	
-	/**
-	 * Constructor General de la Categoria
-	 * @param id Id de la Categoria
-	 * @param nombre Nombre de la Categoria
-	 * @param descripcion Descripcion de la categoria
-	 */
-	public Categoria(Integer id, String nombre, String descripcion) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-	}
-	
-	
-	public Categoria() {
-	}
-
-
 	public Integer getId() {
 		return id;
 	}

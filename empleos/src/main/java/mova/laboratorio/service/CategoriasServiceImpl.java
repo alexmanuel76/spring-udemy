@@ -20,9 +20,20 @@ public class CategoriasServiceImpl implements ICategoriasService {
 		categoria1.setNombre("Recursos Humanos");
 		categoria1.setDescripcion("Trabajos relacionados con el area de RH");
 		
-		Categoria categoria2 = new Categoria(2,"Ventas","Ofertas de trabajo relacionado con ventas");
-		Categoria categoria3 = new Categoria(3,"Arquitectura","Diseño de planos en general y trabajos relacionados");
-		Categoria categoria4 = new Categoria(4,"Informatica","Trabajos relacionado con la carrera Informatica");
+		Categoria categoria2 = new Categoria();
+		categoria2.setId(2);
+		categoria2.setNombre("Ventas");
+		categoria2.setDescripcion("Ofertas de trabajo relacionado con ventas");
+		
+		Categoria categoria3 = new Categoria();
+		categoria3.setId(3);
+		categoria3.setNombre("Arquitectura");
+		categoria3.setDescripcion("Diseño de planos en general y trabajos relacionados");
+		
+		Categoria categoria4 = new Categoria();
+		categoria4.setId(4);
+		categoria4.setNombre("Informatica");
+		categoria4.setDescripcion("Trabajos relacionado con la carrera Informatica");
 		
 		listadoCategorias.add(categoria1);
 		listadoCategorias.add(categoria2);
@@ -32,6 +43,10 @@ public class CategoriasServiceImpl implements ICategoriasService {
 	
 	@Override
 	public void guardarCategoria(Categoria categoria) {
+		//TODO: BORRAR el ADD ID
+		int cantidad = listadoCategorias.size();
+		cantidad++;
+		categoria.setId(cantidad);
 		listadoCategorias.add(categoria);
 	}
 
