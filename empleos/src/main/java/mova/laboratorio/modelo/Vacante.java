@@ -2,8 +2,20 @@ package mova.laboratorio.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Vacantes")
 public class Vacante {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String  nombre;
 	private String  descripcion;
@@ -13,6 +25,10 @@ public class Vacante {
 	private String  imagen="no-image.png";
 	private String  estatus;
 	private String  detalles;
+	//@Transient  --> Para omitir una columna
+	@OneToOne
+	@JoinColumn(name="idCategoria")
+	private Categoria categoria;
 	
 	public Integer getId() {
 		return id;
@@ -70,10 +86,17 @@ public class Vacante {
 	public void setDetalles(String detalles) {
 		this.detalles = detalles;
 	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	@Override
 	public String toString() {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + ", estatus=" + estatus
-				+ ", detalles=" + detalles + "]";
+				+ ", detalles=" + detalles + ", categoria=" + categoria + "]";
 	}
+	
 }
