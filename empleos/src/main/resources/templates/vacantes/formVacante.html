@@ -29,7 +29,7 @@
 					<strong>Datos de la oferta de trabajo</strong>
 				</h4>
 				<div class="card-body">
-					<form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
+					<form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data">
 						<!-- Fragmento de control & mensaje de errores en el formulario  -->
 						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
 							Por favor corrija los siguientes errores:
@@ -56,13 +56,9 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="categoria">Categoría</label> <select
-										class="form-control" name="categoria" id="categoria">
-										<option value="1">Ventas</option>
-										<option value="2">Contabilidad</option>
-										<option value="3">Transporte</option>
-										<option value="4">Informatica</option>
-										<option value="5">Construccion</option>
+									<label for="categoria">Categoría</label>
+									<select	class="form-control" th:field="*{categoria.id}">
+										<option th:each="categoria : ${categorias}" th:value="${categoria.id}">[[${categoria.nombre}]]</option>
 									</select>
 								</div>
 							</div>

@@ -42,7 +42,7 @@
               </thead>
               <tbody>
                 <tr th:each="vacante:${vacantes}">
-                  <td></td>
+                  <td>[[${vacante.categoria.nombre}]]</td>
                   <td>[[${vacante.nombre}]]</td>                  
                   <td>[[${vacante.fecha}]]</td>
                   <td>[[${vacante.estatus}]]</td>
