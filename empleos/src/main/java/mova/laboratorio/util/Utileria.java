@@ -18,10 +18,11 @@ public class Utileria {
 		String nombreOriginal = multiPart.getOriginalFilename();
 		String prefijo = randomAlphaNumeric(8);
 		nombreOriginal = nombreOriginal.replace(" ", "-");
+		String nombreFinal = prefijo + nombreOriginal;
 		try {
-			File imageFile = new File(ruta + prefijo + nombreOriginal);
+			File imageFile = new File(ruta + nombreFinal);
 			multiPart.transferTo(imageFile);
-			return nombreOriginal;
+			return nombreFinal;
 		} catch (IOException ex) {
 			System.out.println("Error al tratar de grabar el archivo: " + ex.getMessage());
 			return null;

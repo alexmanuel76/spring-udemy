@@ -47,11 +47,11 @@
         <hr>
         <div class="row" th:each="empleo:${empleos}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${empleo.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${empleo.imagen})}" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
             <h2>[[${empleo.nombre}]]</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>[[${empleo.nombre}]]</span></h6>
+            <h6 class="card-title"><strong>Categoría: </strong> <span>[[${empleo.categoria.nombre}]]</span></h6>
             <h6 class="card-title"><strong>Publicado: </strong> <span>[[${empleo.fecha}]]</span></h6>                
             <p>[[${empleo.descripcion}]] </p>
             <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${empleo.id})}" role="button">Ver Detalle &raquo;</a></p>            

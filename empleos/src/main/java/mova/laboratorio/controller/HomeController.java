@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import mova.laboratorio.modelo.Vacante;
 import mova.laboratorio.service.IVacanteService;
@@ -53,8 +54,11 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String mostrarHome(Model modelo) {
-		List<Vacante> listaEmpleos = servicioVacante.buscarTodas();
-		modelo.addAttribute("empleos", listaEmpleos);
 		return "home";
+	}
+	
+	@ModelAttribute
+	public void setGenericos(Model modelo) {
+		modelo.addAttribute("empleos", servicioVacante.buscarDestacadas());
 	}
 }
