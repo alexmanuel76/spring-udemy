@@ -43,4 +43,9 @@ public class VacantesService implements IVacanteService {
 		return vacantesRepo.findByDestacadoAndEstatusOrderByIdDesc(DESTACADO, ESTADO);
 	}
 
+	@Override
+	public void eliminarVacante(Integer idVacante) {
+		vacantesRepo.deleteById(idVacante);
+	}
+
 }
