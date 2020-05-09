@@ -65,4 +65,10 @@ public class CategoriasServiceImpl implements ICategoriasService {
 		return null;
 	}
 
+	@Override
+	public void eliminarCategoria(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

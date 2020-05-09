@@ -1,0 +1,15 @@
+${Ansi.YELLOW}***********************************************************************************************************************
+${Ansi.RED}      ______  ___                        ______       ______  
+${Ansi.RED}      ___   |/  /________   _______ _    ___  /______ ___  /_ 
+${Ansi.RED}      __  /|_/ /_  __ \_ | / /  __ `/    __  / _  __ `/_  __ \
+${Ansi.RED}      _  /  / / / /_/ /_ |/ // /_/ /     _  /__/ /_/ /_  /_/ /
+${Ansi.RED}      /_/  /_/  \____/_____/ \__,_/      /_____|__,_/ /_.___/ 
+${Ansi.RED}
+
+${Ansi.BLUE}Application            : ${application.name}
+${Ansi.BLUE}Application    Version : ${application.formatted-version}
+${Ansi.BLUE}Application Title      : ${application.title}
+${Ansi.BLUE}Spring Boot Version    : ${spring-boot.version}
+${Ansi.BLUE}Spring Boot Formatted Version : ${spring-boot.formatted-version}
+
+${Ansi.YELLOW}***********************************************************************************************************************

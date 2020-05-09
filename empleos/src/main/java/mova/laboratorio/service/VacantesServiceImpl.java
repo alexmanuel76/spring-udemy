@@ -99,4 +99,10 @@ public class VacantesServiceImpl implements IVacanteService{
 		return null;
 	}
 
+	@Override
+	public void eliminarVacante(Integer idVacante) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
