@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import mova.laboratorio.modelo.Usuario;
 import mova.laboratorio.modelo.Vacante;
+import mova.laboratorio.service.ICategoriasService;
 import mova.laboratorio.service.IVacanteService;
 
 @Controller
@@ -18,6 +20,10 @@ public class HomeController {
 	
 	@Autowired
 	private IVacanteService servicioVacante;
+	
+	@Autowired
+	private ICategoriasService servicioCategoria;
+	
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model modelo) {
 		List<Vacante> listaEmpleos = servicioVacante.buscarTodas();
@@ -55,9 +61,25 @@ public class HomeController {
 	public String mostrarHome(Model modelo) {
 		return "home";
 	}
+	@GetMapping("/search")
+	public String buscar(@ModelAttribute("search") Vacante vacante) {
+		System.out.println("Vacante:" +vacante);
+		return "home";	
+	}
+	
+	//// Fragmento asociados a Usuarios
+	
+	@GetMapping("/register")
+	public String registrarse(Usuario usuario,Model modelo) {
+		return "usuarios/formRegistro";
+	}
 	
 	@ModelAttribute
 	public void setGenericos(Model modelo) {
+		Vacante vacanteSearch = new Vacante();
+		vacanteSearch.reset();
+		modelo.addAttribute("search", vacanteSearch);
 		modelo.addAttribute("empleos", servicioVacante.buscarDestacadas());
+		modelo.addAttribute("categorias", servicioCategoria.buscarTodas());
 	}
 }
