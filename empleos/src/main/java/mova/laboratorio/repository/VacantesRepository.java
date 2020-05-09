@@ -15,5 +15,5 @@ public interface VacantesRepository extends JpaRepository<Vacante, Integer> {
 	List<Vacante> findBySalarioBetweenOrderBySalarioDesc(double minimo,double maximo);
 	
 	List<Vacante> findByEstatusIn(String[] estatus);
-
+	
 }

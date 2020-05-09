@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import mova.laboratorio.modelo.Vacante;
@@ -13,9 +14,10 @@ import mova.laboratorio.service.IVacanteService;
 
 @Service
 @Primary
-public class VacantesService implements IVacanteService {
+public class VacantesServiceJpa implements IVacanteService {
 	@Autowired
 	private VacantesRepository vacantesRepo;
+	
 	private int DESTACADO = 1;
 	private String ESTADO = "Aprobada";
 
@@ -46,6 +48,11 @@ public class VacantesService implements IVacanteService {
 	@Override
 	public void eliminarVacante(Integer idVacante) {
 		vacantesRepo.deleteById(idVacante);
+	}
+
+	@Override
+	public List<Vacante> buscarByExample(Example<Vacante> example) {
+		return vacantesRepo.findAll(example);
 	}
 
 }
