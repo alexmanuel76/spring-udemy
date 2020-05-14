@@ -3,6 +3,8 @@ package mova.laboratorio.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +36,13 @@ public class CategoriasController {
 	@GetMapping("/index")
 	public String mostrarIndex(Model modelo) {
 		List<Categoria> listadoCategorias = categoriasService.buscarTodas();
+		modelo.addAttribute("categorias", listadoCategorias);
+		return "categorias/listCategorias";
+	}
+	
+	@GetMapping(value = "/indexPaginate")
+	public String buscarTodasPaginado(Model modelo, Pageable pagina) {
+		Page<Categoria> listadoCategorias = categoriasService.buscarTodas(pagina);
 		modelo.addAttribute("categorias", listadoCategorias);
 		return "categorias/listCategorias";
 	}
