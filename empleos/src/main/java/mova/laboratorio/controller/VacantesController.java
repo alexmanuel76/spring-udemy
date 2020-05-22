@@ -41,6 +41,7 @@ public class VacantesController {
 	
 	@Autowired
 	private ICategoriasService servicioCategoria;
+	
 	@Autowired
 	private LogAppController log;
 	
@@ -105,7 +106,6 @@ public class VacantesController {
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 		Vacante vacante = servicioVacantes.buscarPorId(idVacante);
-		System.out.println("Vacante:" + vacante.toString());
 		modelo.addAttribute("vacante", vacante);
 
 		return "detalle";

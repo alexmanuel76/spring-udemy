@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,10 @@ import mova.laboratorio.service.IUsuarioService;
 public class UsuariosController {
 	
 	@Autowired
-	private IUsuarioService usuariosRepo;;
+	private IUsuarioService usuariosRepo;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/index")
 	public String inicio(Model modelo) {
@@ -38,6 +42,10 @@ public class UsuariosController {
                           RedirectAttributes atributos) {
 		
 		Perfil perfil = new Perfil();
+		String pwdPlano = usuario.getPassword();
+		String pwdEncriptado = passwordEncoder.encode(pwdPlano);
+		usuario.setPassword(pwdEncriptado);
+		
 		perfil.setId(3);
 		if (controlBind.hasErrors()) {
 			for (ObjectError error: controlBind.getAllErrors()) {

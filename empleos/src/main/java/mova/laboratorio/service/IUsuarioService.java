@@ -23,5 +23,12 @@ public interface IUsuarioService {
 	 * @return Listado tipo Usuario List<Usuario>
 	 */
 	List<Usuario> buscarTodos();
+	
+	/**
+	 * Rutina que devolvera un usuario de la BD dado el username registrado
+	 * @param username Login del usuario en la aplicacion registrado en la BD
+	 * @return Objeto tipo Usuario
+	 */
+	Usuario buscarPorUsername(String username);
 
 }

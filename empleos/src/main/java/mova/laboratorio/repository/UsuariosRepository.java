@@ -6,5 +6,7 @@ import mova.laboratorio.modelo.Usuario;
 
 
 public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
+	
+	Usuario findByUsername(String username);
 
 }
