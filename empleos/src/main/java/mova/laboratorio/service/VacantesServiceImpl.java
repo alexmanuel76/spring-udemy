@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import mova.laboratorio.modelo.Vacante;
@@ -111,5 +113,12 @@ public class VacantesServiceImpl implements IVacanteService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Page<Vacante> buscarTodas(Pageable pagina) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

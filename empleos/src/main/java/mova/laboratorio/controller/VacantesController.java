@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +41,7 @@ public class VacantesController {
 	
 	@Autowired
 	private ICategoriasService servicioCategoria;
+	
 	@Autowired
 	private LogAppController log;
 	
@@ -51,6 +54,13 @@ public class VacantesController {
 	public String mostrarIndex(Model modelo) {
 		List<Vacante> listadoVacantes = servicioVacantes.buscarTodas();
 		modelo.addAttribute("vacantes", listadoVacantes);
+		return "vacantes/listVacantes";
+	}
+	
+	@GetMapping(value = "/indexPaginate")
+	public String mostrarIndexPaginado(Model modelo, Pageable pagina) {
+		Page<Vacante> listaVacantes = servicioVacantes.buscarTodas(pagina);
+		modelo.addAttribute("vacantes", listaVacantes);
 		return "vacantes/listVacantes";
 	}
 
@@ -96,7 +106,6 @@ public class VacantesController {
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 		Vacante vacante = servicioVacantes.buscarPorId(idVacante);
-		System.out.println("Vacante:" + vacante.toString());
 		modelo.addAttribute("vacante", vacante);
 
 		return "detalle";
