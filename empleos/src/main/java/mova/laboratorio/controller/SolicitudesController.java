@@ -1,13 +1,19 @@
 package mova.laboratorio.controller;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,8 +69,6 @@ public class SolicitudesController {
     @GetMapping("/index") 
 	public String mostrarIndex(Model modelo) {
     	List<Solicitud> listadoSolicitudes= servicioSolicitudes.buscarTodas();
-    	System.out.println("val: "+listadoSolicitudes.size());
-
     	modelo.addAttribute("solicitudes", listadoSolicitudes);
 		return "solicitudes/listSolicitudes";
 		
@@ -139,11 +143,35 @@ public class SolicitudesController {
 	 * @return
 	 */
 	@GetMapping("/delete/{id}")
-	public String eliminar() {
-		
-		// EJERCICIO
-		return "redirect:/solicitudes/indexPaginate";
-		
+	public String eliminar(@PathVariable("id") Integer idSolicitud,
+			               RedirectAttributes atributos) {
+		servicioSolicitudes.eliminar(idSolicitud);
+		atributos.addFlashAttribute("msg","Registro Eliminado con Exito!");
+		return "redirect:/solicitudes/index";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Integer idSolicitud,Model modelo) {
+		Solicitud solicitud = servicioSolicitudes.buscarPorId(idSolicitud);
+		modelo.addAttribute("solicitud", solicitud);
+		return "/solicitudes/formSolicitud";
+	}
+	
+	@GetMapping("/cv/{id}")
+	public void obtenerCV(@PathVariable("id") Integer idSolicitud,HttpServletResponse response) {
+		Solicitud solicitud = servicioSolicitudes.buscarPorId(idSolicitud);
+		try {
+			
+			DefaultResourceLoader loader = new DefaultResourceLoader();
+			InputStream inputStream = loader.getResource(ruta+solicitud.getArchivo()).getInputStream();
+			
+			IOUtils.copy(inputStream, response.getOutputStream());
+            response.setHeader("Content-Disposition", "attachment; filename="+solicitud.getArchivo());
+            response.flushBuffer();
+		}
+		catch(IOException ex) {
+			System.out.println("problemas al cargar: "+ex.getMessage()+" \n por: "+ex.toString());
+		}
 	}
 	
 	@ModelAttribute

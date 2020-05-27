@@ -49,14 +49,16 @@
 							<hr>
 							<form th:action="@{/solicitudes/save}" method="post" th:object="${solicitud}" enctype="multipart/form-data">
 							
+							<input type="hidden" th:field="*{id}">
 							<input type="hidden" th:field="*{usuario}">
 							<input type="hidden" th:field="*{vacante}">
+							<input type="hidden" th:field="*{archivo}">
 							
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="comentarios">Comentarios</label>
-											<textarea class="form-control" name="comentarios" id="comentarios" rows="2"></textarea>
+											<textarea class="form-control" name="comentarios" th:field="*{comentarios}" id="comentarios" rows="2"></textarea>
 										</div>
 									</div>
 									<div class="col-md-6">

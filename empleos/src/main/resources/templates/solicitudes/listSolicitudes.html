@@ -43,12 +43,12 @@
                   <td>[[${solicitud.vacante.categoria.nombre}]]</td>
                   <td>[[${solicitud.vacante.nombre}]]</td>
                   <td>[[${solicitud.usuario.nombre}]]</td>
-                  <td>[[${solicitud.fecha}]]</td>
+                  <td th:text="${#dates.format(solicitud.fecha, 'dd-MM-yyyy')}"></td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/edit/{id} (id=${solicitud.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/delete/{id} (id=${solicitud.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                     <a href="#" class="btn btn-success btn-sm" role="button" title="Enviar correo electrónico al usuario."><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
+                    <a th:href="@{/solicitudes/cv/{id} (id=${solicitud.id})}" class="btn btn-success btn-sm" role="button" title="Descargar Curriculm Vitae."><i class="fas fa-download" aria-hidden="true"></i></a>
                   </td>
                 </tr>                              
               </tbody>

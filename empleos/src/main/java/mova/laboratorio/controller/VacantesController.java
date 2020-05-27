@@ -93,14 +93,14 @@ public class VacantesController {
 		servicioVacantes.guardar(vacante);
 		atributos.addFlashAttribute("msg", "Registro Guardado");
 		log.Mensaje("REGISTRO GUARDADO CON EXITO", "INFO");
-		return "redirect:/vacantes/index";
+		return "redirect:/vacantes/indexPaginate";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String eliminarVacante(@PathVariable("id") int idVacante, RedirectAttributes atributos) {
 		servicioVacantes.eliminarVacante(idVacante);
 		atributos.addFlashAttribute("msg","Registro Eliminado con Exito!");
-		return "redirect:/vacantes/index";
+		return "redirect:/vacantes/indexPaginate";
 	}
 
 	@GetMapping("/view/{id}")
