@@ -46,7 +46,10 @@
         <div class="row" th:each="vacante:${vacantes}">
           <div class="col-md-3">            
           
+           <!--  
             <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+           -->
+           <img class="rounded mx-auto d-block" th:src="@{'/logos/' +${vacante.imagen}}" alt="Generic placeholder image" width="220" height="220">            
            
           </div>
           
